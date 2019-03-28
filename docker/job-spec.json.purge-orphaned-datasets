@@ -1,0 +1,15 @@
+{
+  "required_queues": ["system-jobs-queue"],
+  "command": "/home/ops/verdi/ops/purge_orphaned_datasets/purge_orphaned_datasets.py",
+  "disk_usage": "1GB",
+  "params" : [
+      {
+        "name": "data_type",
+        "destination": "context"
+      },
+      {
+        "name": "prod_mode",
+        "destination": "context"
+      }
+	]
+}

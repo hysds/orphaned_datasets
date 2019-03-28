@@ -1,0 +1,17 @@
+{
+  "label": "Locating and purging orphaned data sets",
+  "component": "mozart",
+  "submission_type": "individual",
+  "params": [
+      {
+        "name": "data_type",
+        "type": "text",
+        "from": "submitter"
+      },
+      {
+        "name": "prod_mode",
+        "type": "boolean",
+        "from": "submitter"
+      }
+  ]
+}
