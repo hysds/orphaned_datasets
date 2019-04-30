@@ -4,9 +4,6 @@ import requests
 from botocore.exceptions import ClientError
 
 
-# datasets\/(.+)\/(v.*)\/(\d{4})\/(\d{2})\/(\d{2})\/(.+?)\/(.*)
-
-
 def pull_all_data_sets(es_url, data_type):
     batch_size = 1000
 
@@ -30,7 +27,7 @@ def pull_all_data_sets(es_url, data_type):
         }
         req = requests.post(es_url, data=json.dumps(es_query), verify=False)
         if req.status_code != 200:
-            raise BaseException("Elasticsearch went wrong")
+            raise BaseException("ElasticSearch went wrong")
         es_results = req.json()
         return {(
             row["_id"],
@@ -56,7 +53,7 @@ def check_file_date_s3(s3_client, bucket, key):
         if e.response['Error']['Code'] == 'NoSuchKey':
             return None
         else:
-            raise "Something with S3 went wrong, exiting job"
+            raise BaseException("Something with S3 went wrong, exiting job")
 
 
 def delete_s3_folder(bucket, prefix):

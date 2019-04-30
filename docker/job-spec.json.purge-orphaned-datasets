@@ -4,12 +4,12 @@
   "disk_usage": "1GB",
   "params" : [
       {
-        "name": "data_type",
-        "destination": "context"
+        "name": "GRQ ES URL",
+        "destination": "positional"
       },
       {
-        "name": "prod_mode",
-        "destination": "context"
+        "name": "S3 URL",
+        "destination": "positional"
       }
 	]
 }

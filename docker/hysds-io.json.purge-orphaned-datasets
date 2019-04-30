@@ -4,12 +4,12 @@
   "submission_type": "individual",
   "params": [
       {
-        "name": "data_type",
+        "name": "GRQ ES URL",
         "type": "text",
         "from": "submitter"
       },
       {
-        "name": "prod_mode",
+        "name": "S3 URL",
         "type": "boolean",
         "from": "submitter"
       }

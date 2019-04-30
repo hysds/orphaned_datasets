@@ -1,29 +1,30 @@
-#!/bin/bash
+# !/bin/bash
 
-# source $HOME/verdi/bin/activate
-source $HOME/jpl/orphaned_datasets/venv/bin/activate
+source $HOME/verdi/bin/activate
 
 BASE_PATH=$(dirname "${BASH_SOURCE}")
 
 # check args
-if [ "$#" -eq 5 ]; then
-  id=$1
-  url=$2
-  emails=$3
-  rule_name=$4
-  component=$5
+if [ "$#" -eq 2 ]; then
+  grq_es_url=$1
+  s3_url=$2
 
-  echo $id
-  echo $url
-  echo $emails
-  echo $rule_name
-  echo $component
+  echo s3_url
+  echo dataset
 
 else
   echo "Invalid number or arguments ($#) $*" 1>&2
-  # exit 1
+  exit 1
 fi
 
+# start s3 crawler job
+echo "##########################################" 1>&2
+echo -n "starting job"
+# date 1>&2
+python $BASE_PATH/purge_orphaned_datasets.py "$grq_es_url" "s3_url"     ### > notify_by_email.log 2>&1s
+
+deactivate
+exit 0
 
 
 # send email
@@ -41,7 +42,3 @@ fi
 #   echo "{}"
 #   exit $STATUS
 # fi
-
-# deactivate
-
-#exit 0
