@@ -4,13 +4,14 @@
   "submission_type": "individual",
   "params": [
       {
-        "name": "GRQ ES URL",
+        "name": "s3_bucket",
         "type": "text",
-        "from": "submitter"
+        "from": "submitter",
+        "default": "aria-ops-dataset-bucket"
       },
       {
-        "name": "S3 URL",
-        "type": "boolean",
+        "name": "dataset_type",
+        "enumerables": ["slc", "interferogram"],
         "from": "submitter"
       }
   ]

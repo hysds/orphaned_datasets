@@ -4,11 +4,11 @@
   "disk_usage": "1GB",
   "params" : [
       {
-        "name": "GRQ ES URL",
+        "name": "s3_bucket",
         "destination": "positional"
       },
       {
-        "name": "S3 URL",
+        "name": "dataset_type",
         "destination": "positional"
       }
 	]
