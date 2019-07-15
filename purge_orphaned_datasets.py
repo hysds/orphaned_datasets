@@ -6,7 +6,7 @@ from datetime import datetime
 import logging as logger
 
 from hysds.celery import app
-from util import OrphanedDatasetsFinder, pull_all_data_sets, publish_dataset
+from util import OrphanedDatasetsFinder, read_context, pull_all_data_sets, publish_dataset
 
 urllib3.disable_warnings()
 
@@ -15,10 +15,16 @@ if __name__ == '__main__':
     # python purge_orphaned_datasets.py aria-ops-dataset-bucket slc PRETEND
     GRQ_ES_URL = app.conf['GRQ_ES_URL'] + '/_search'
 
-    bucket = sys.argv[1]
-    dataset_type = sys.argv[2]
+    try:
+        bucket = sys.argv[1]
+        dataset_type = sys.argv[2]
+        mode = sys.argv[3]  # ['PRETEND', 'PERMANENT']
+    except Exception as e:
+        cxt = read_context()
+        bucket = cxt['bucket']
+        dataset_type = cxt['dataset_type']
+        mode = cxt['mode']
 
-    mode = sys.argv[3]  # ['PRETEND', 'PERMANENT']
     if mode == 'PERMANENT':
         print('PROD PURGE TURNED ON, WILL PURGE S3 FILES')
     else:
@@ -37,7 +43,7 @@ if __name__ == '__main__':
     csv_filename = '%s/%s/%s-%s-%s-%s.csv' % (os.getcwd(), product_id, product_id, dataset_type, current_timestamp, mode)
     results_file = open(csv_filename, 'w')
 
-    LOG_FILE_NAME = os.getcwd() + 'orphaned_%s_%s_%s.log' % (dataset_type, current_timestamp, mode)
+    LOG_FILE_NAME = os.getcwd() + '/orphaned_%s_%s_%s.log' % (dataset_type, current_timestamp, mode)
     logger.basicConfig(format='%(asctime)s %(levelname)s %(message)s',
                        filename=LOG_FILE_NAME,
                        filemode='w',

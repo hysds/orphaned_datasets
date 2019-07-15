@@ -4,14 +4,22 @@
   "submission_type": "individual",
   "params": [
       {
-        "name": "s3_bucket",
+        "name": "bucket",
         "type": "text",
         "from": "submitter",
         "default": "aria-ops-dataset-bucket"
       },
       {
         "name": "dataset_type",
+        "type": "enum",
         "enumerables": ["slc", "interferogram"],
+        "from": "submitter"
+      },
+      {
+        "name": "mode",
+        "type": "enum",
+        "enumerables": ["PRETEND", "PERMANENT"],
+        "default": "PRETEND",
         "from": "submitter"
       }
   ]

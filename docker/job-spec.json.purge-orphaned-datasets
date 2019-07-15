@@ -4,12 +4,16 @@
   "disk_usage": "1GB",
   "params" : [
       {
-        "name": "s3_bucket",
-        "destination": "positional"
+        "name": "bucket",
+        "destination": "context"
       },
       {
         "name": "dataset_type",
-        "destination": "positional"
+        "destination": "context"
+      },
+      {
+        "name": "mode",
+        "destination": "context"
       }
 	]
 }

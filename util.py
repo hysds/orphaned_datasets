@@ -154,3 +154,17 @@ def publish_dataset(product_id):
     met_json_file = '%s/%s.met.json' % (product_id, product_id)
     with open(met_json_file, 'w') as f:
         json.dump({}, f)
+
+
+def read_context():
+    '''
+    reads contents of _context.json file
+    :return: json object
+    '''
+    try:
+        context_file = '_context.json'
+        with open(context_file, 'r') as fin:
+            context = json.load(fin)
+        return context
+    except Exception as e:
+        raise Exception('unable to parse _context.json from work directory')
