@@ -1,13 +1,12 @@
 {
-  "label": "Locating and purging orphaned data sets",
+  "label": "Orphaned dataset finder",
   "component": "mozart",
   "submission_type": "individual",
   "params": [
       {
         "name": "bucket",
         "type": "text",
-        "from": "submitter",
-        "default": "aria-ops-dataset-bucket"
+        "from": "submitter"
       },
       {
         "name": "dataset_type",
